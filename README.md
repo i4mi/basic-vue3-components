@@ -4,7 +4,7 @@ Some simple components and mixins to be used to VUE 3 applications.
 
 Usage example:
 
-''''
+```
 <template>
 
   <modal id="m1" title="Hello" open="true">
@@ -23,4 +23,4 @@ export default {
 }
 
 </script>
-''''
+```
