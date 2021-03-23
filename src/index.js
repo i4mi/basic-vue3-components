@@ -13,20 +13,19 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
+import CheckBox from "./components/CheckBox.vue";
+import ErrorBox from "./components/ErrorBox.vue";
+import Filter from "./components/Filter.vue";
+import FormGroup from "./components/FormGroup.vue";
+import Modal from "./components/Modal.vue";
+import Pagination from "./components/Pagination.vue";
+import RadioBox from "./components/RadioBox.vue";
+import Sorter from "./components/Sorter.vue";
+import Success from "./components/Success.vue";
 
-import CheckBox from "/src/components/CheckBox.vue";
-import ErrorBox from "/src/components/ErrorBox.vue";
-import Filter from "/src/components/Filter.vue";
-import FormGroup from "/src/components/FormGroup.vue";
-import Modal from "/src/components/Modal.vue";
-import Pagination from "/src/components/Pagination.vue";
-import RadioBox from "/src/components/RadioBox.vue";
-import Sorter from "/src/components/Sorter.vue";
-import Success from "/src/components/Success.vue";
+import rl from "./mixins/resultlist.js";
+import status from "./mixins/status.js";
 
-import rl from "/src/mixins/resultlist.js";
-import status from "/src/mixins/status.js";
-
-import Filters from "/src/filters.js";
+import Filters from "./filters.js";
 
 export { CheckBox, ErrorBox, Filter, FormGroup, Modal, Pagination, RadioBox, Sorter, Success, rl, status, Filters }

@@ -15,7 +15,7 @@ limitations under the License.
 -->
 <template>
     <div class="modal fade" :id="id" tabindex="-1" :aria-labelledby="id+'Label'" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content" v-if="open">
                 <div class="modal-header">
                     <h5 class="modal-title" :id="id+'Label'">{{ title }}</h5>
@@ -23,7 +23,7 @@ limitations under the License.
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
+                <div :class="{ 'modal-body' : !fullWidth }">
                     <slot></slot>
                 </div>
                 <div class="modal-footer" v-if="$slots.footer"><slot name="footer"></slot></div>                
@@ -42,6 +42,10 @@ export default {
         open : {
             type: Boolean,
             default: true
+        },
+        fullWidth : {
+            type: Boolean,
+            default: false
         }
     },
     emits : ["close"],
@@ -49,8 +53,10 @@ export default {
     watch : {
         open() {            
             if (this.open) {
+                console.log("SHOW");
               $('#'+this.id).modal('show');
             } else {
+                console.log("HIDE");
               $('#'+this.id).modal('hide');
             }
         }
@@ -60,6 +66,10 @@ export default {
         close() {
             this.$emit("close");
         }
+    },
+
+    mounted() {
+        if (this.open) $('#'+this.id).modal('show');
     }
 
 }

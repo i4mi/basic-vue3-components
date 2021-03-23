@@ -15,7 +15,7 @@ limitations under the License.
 -->
 <template>         
     <span class="text-success" v-if="finished==action">
-        &nbsp;<span class="fas fa-check"></span> <span v-t="msg"></span>
+        &nbsp;<span class="fas fa-check"></span> <span>{{ $t(msg) }}</span>
     </span>    
 </template>
 <script>

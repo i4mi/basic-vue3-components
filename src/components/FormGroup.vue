@@ -15,16 +15,16 @@ limitations under the License.
 -->
 <template>
    <div class="form-group form-row" :class="{ 'has-feedback': path }">
-          <label :for="name" class="col-lg-4 col-form-label midata-label" v-t="label"></label>
-          <div class="col-lg-6">
-            <slot></slot>
-            <div class="invalid-feedback" v-if="path">{{ $t(path) }}</div>
+          <label :for="name" class="col-lg-4 col-form-label midata-label">{{ $t(label) }}</label>
+          <div class="col-lg-6"><slot></slot>            
+            <div class="invalid-feedback">{{ $t(path) }}</div>
           </div>
     </div>
 </template>
 
 <script>
 export default {    
+  name : "FormGroup",
   props: ['label', 'name', 'path']
 }
 </script>

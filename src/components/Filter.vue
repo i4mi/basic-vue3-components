@@ -14,16 +14,19 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -->
 <template>    
-    <input :placeholder="$t(label)" type="text" :value="modelValue.filter[name]" @input="modelValue.filter[name]=$event.target.value" class="form-control">    
+    <input :placeholder="$t(label)" type="text" :value="item.filter[name]" @input="item.filter[name]=$event.target.value" class="form-control">    
 </template>
 
 <script>
-import FormGroup from "./FormGroup.vue"
-
 
 export default {
   props: ['name', 'label', 'modelValue' ],
   emits: ['update:modelValue'],
-  components: { FormGroup }
+  data: () => ({
+     item : null 
+  }),
+  created() {
+      this.$data.item = this.modelValue;
+  }
 }
 </script>

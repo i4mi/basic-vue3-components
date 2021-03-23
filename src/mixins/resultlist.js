@@ -15,9 +15,9 @@ limitations under the License.
 */
 import _ from "lodash";
 import { computed, reactive } from "vue";
-import Sorter from "/src/components/Sorter.vue"
-import Restrict from "/src/components/Filter.vue"
-import Pagination from "/src/components/Pagination.vue"
+import Sorter from "../components/Sorter.vue"
+import Restrict from "../components/Filter.vue"
+import Pagination from "../components/Pagination.vue"
 
 export default {
 

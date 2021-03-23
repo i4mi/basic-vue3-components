@@ -14,15 +14,16 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -->
 <template>
-    <nav class="nav" aria-label="Page navigation" v-if="modelValue.all && modelValue.all.length > modelValue.pagesize" style="margin-top:10px">        
+    <nav class="nav" aria-label="Page navigation" v-if="item.all && item.all.length > item.pagesize" style="margin-top:10px">
         <ul class="pagination mr-auto">
-            <li class="page-item" :class="{ disabled : modelValue.current <= 1 }">
+            <li class="page-item" :class="{ disabled : item.current <= 1 }">
                 <a class="page-link"  href="javascript:" @click="prev()" aria-label="Previous">
                     <span aria-hidden="true">&laquo;</span>
                 </a>
             </li>
-            <li v-for="page in modelValue.pages" :key="page.nr" class="page-item" :class="{ active : modelValue.current == page.nr }"><a class="page-link" @click="setPage(page.nr)" href="javascript:">{{ page.label }}</a></li>    
-            <li class="page-item" :class="{ disabled : modelValue.current >= modelValue.pageCount }">
+            <li v-for="page in item.pages" :key="page.nr" class="page-item" :class="{ active : item.current == page.nr }"><a class="page-link" @click="setPage(page.nr)" href="javascript:">{{ page.label }}</a></li>
+
+            <li class="page-item" :class="{ disabled : item.current >= item.pageCount }">
                 <a class="page-link"  href="javascript:" @click="next()" aria-label="Next">
                     <span aria-hidden="true">&raquo;</span>
                 </a>
@@ -30,17 +31,19 @@ limitations under the License.
         </ul>
         <div v-if="search" class="col-sm-4 col-xs-2 col-lg-3">
             <div class="input-group">
-                <input :placeholder="$t(label || 'common.search_btn')" type="text" :value="modelValue.filter[search]" @input="modelValue.filter[search]=$event.target.value" class="form-control py-2 border-right-0 border">
+                <input :placeholder="$t(label || 'common.search_btn')" type="text" :value="item.filter[search]" @input="item.filter[search]=$event.target.value" class="form-control py-2 border-right-0 border">
+
                 <span class="input-group-append">
                     <div class="input-group-text bg-transparent"><i class="fa fa-search"></i></div>
                 </span>
             </div>
         </div>
-         
+
     </nav>
 </template>
 
 <script>
+
 export default {
   props: ['modelValue', 'search', 'label' ],
   emits: ['update:modelValue'],
@@ -66,3 +69,4 @@ export default {
   }
 }
 </script>
+

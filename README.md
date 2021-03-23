@@ -1,24 +1,26 @@
 # basic-vue3-components
 
-## Project setup
-```
-npm install
-```
+Some simple components and mixins to be used to VUE 3 applications.
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+Usage example:
 
-### Compiles and minifies for production
-```
-npm run build
-```
+''''
+<template>
 
-### Lints and fixes files
-```
-npm run lint
-```
+  <modal id="m1" title="Hello" open="true">
+     <error-box :error="error">
+     Hello world
+  </modal>
+</template>
+<script>
+import { Modal, ErrorBox, status } from "basic-vue3-components";
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+export default {
+    ...
+    components : { Modal, ErrorBox },
+    mixins : [ status ]
+    ...
+}
+
+</script>
+''''
