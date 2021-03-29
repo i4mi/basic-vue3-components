@@ -68,7 +68,7 @@ export default {
                return call.then(function(result) { me.loadEnd();return result; }, function(err) { 		 
                 let response = err.response || err;
                 
-                   if (response.data && response.data.field && response.data.type && me.$refs.myform) {		   			
+                   if (response.data && response.data.field && me.$refs.myform) {		   			
                     me.setError(response.data.field, response.data.code)                       
                     me.loadFailure(response, true);		   			
                    } else {                       
