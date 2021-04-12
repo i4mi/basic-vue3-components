@@ -14,15 +14,16 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -->
 <template>
-    <div class="passwordContainer">      
+    <div class="passwordContainer">     
       <i class="fas" :class="{ 'fa-eye' : !shown, 'fa-eye-slash' : shown }" @click="toggle()"></i>
-      <input :type="type" v-bind="$attrs">            
+      <input :type="type" v-bind="$attrs" v-validate  :value="modelValue" @input="$emit('update:modelValue', $event.target.value)">            
     </div>
 </template>
 
 <script>
 export default {    
   inheritAttrs: false,
+  props : [ 'modelValue' ],
   data: () => ({
      shown : false 
   }),
