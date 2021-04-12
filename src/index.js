@@ -22,10 +22,11 @@ import Pagination from "./components/Pagination.vue";
 import RadioBox from "./components/RadioBox.vue";
 import Sorter from "./components/Sorter.vue";
 import Success from "./components/Success.vue";
+import Password from "./components/Password.vue";
 
 import rl from "./mixins/resultlist.js";
 import status from "./mixins/status.js";
 
 import Filters from "./filters.js";
 
-export { CheckBox, ErrorBox, Filter, FormGroup, Modal, Pagination, RadioBox, Sorter, Success, rl, status, Filters }
+export { CheckBox, ErrorBox, Filter, FormGroup, Modal, Pagination, RadioBox, Sorter, Success, rl, status, Filters, Password }
