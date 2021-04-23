@@ -23,13 +23,14 @@ import RadioBox from "./components/RadioBox.vue";
 import Sorter from "./components/Sorter.vue";
 import Success from "./components/Success.vue";
 import Password from "./components/Password.vue";
+import Typeahead from "./components/Typeahead.vue";
 
 import rl from "./mixins/resultlist.js";
 import status from "./mixins/status.js";
 
 import Filters from "./filters.js";
 
-export { CheckBox, ErrorBox, Filter, FormGroup, Modal, Pagination, RadioBox, Sorter, Success, rl, status, Filters, Password }
+export { CheckBox, ErrorBox, Filter, FormGroup, Modal, Pagination, RadioBox, Sorter, Success, rl, status, Filters, Password, Typeahead }
 export default {
     install: (app, options) => {
         app.directive('validate', {
