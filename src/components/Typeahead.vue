@@ -1,6 +1,6 @@
 <template>
     <div class="dropdown">
-        <input type="text" @change = 'mychange' v-validate :value="modelValue" @input="input($event.target.value)"
+        <input type="text" autocomplete="off" @change = 'mychange' v-validate :value="modelValue" @input="input($event.target.value)"
             @keydown.enter.prevent = 'enter'
             @keydown.down = 'down'
             @keydown.up = 'up'
@@ -8,8 +8,8 @@
             v-bind="$attrs"
             >
         <ul class="dropdown-menu" :class="{'show':isOpen}">
-            <a class="dropdown-item typeahead-item" v-for="(suggestion, idx) in matches" :key="suggestion" :class="{'active': isActive(idx)}" @click="suggestionClick(idx)" href="javascript:">
-                {{ suggestion }}
+            <a class="dropdown-item typeahead-item" v-for="(suggestion, idx) in matches" :key="suggestion.value" :class="{'active': isActive(idx)}" @click="suggestionClick(idx)" href="javascript:">
+                {{ suggestion.display }}
             </a>
         </ul>
     </div>
@@ -21,6 +21,7 @@ export default {
     props : {
         suggestions : Array,
         field : String,
+        display : String | Function,
         modelValue : String
     },
     emits: ['update:modelValue','change','selection'],
@@ -41,8 +42,8 @@ export default {
         matches() {
             let result = [];
             for (let entry of this.suggestions) {
-                let v = this.val(entry);
-                if (v.indexOf(this.selection) >= 0) result.push(v);
+                let v = this.val(entry), d = this.valShow(entry);
+                if (d && d.indexOf && d.indexOf(this.selection) >= 0) result.push({ display : d, value : v});
             }
             return result;
         }
@@ -56,9 +57,19 @@ export default {
             return v[this.field];
         },
 
+        valShow(v) {
+            if (this.display) {
+                if (this.display.apply) {
+                    return this.display(v);
+                } else return v[this.display];
+            }
+            if (!this.field) return v;
+            return v[this.field];
+        },
+
         enter() {
             const { $data } = this;
-            $data.selection = this.matches[$data.current];
+            $data.selection = this.matches[$data.current].value;
             this.$emit("update:modelValue", $data.selection);
             $data.open = false;
             this.$emit("change", $data.selection);
@@ -93,7 +104,7 @@ export default {
         
         suggestionClick(index) {            
             const { $data } = this;
-            $data.selection = this.matches[index];
+            $data.selection = this.matches[index].value;
             this.$emit("update:modelValue", $data.selection);
             $data.open = false;
             this.$emit("change", $data.selection);
