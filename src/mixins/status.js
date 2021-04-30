@@ -51,7 +51,7 @@ export default {
                if (!noerror) {
                    if (msg && msg.data) {
                        if (msg.data.issue && msg.data.issue.length) this.$data.error = msg.data.issue[0].diagnostics;
-                       else this.$data.error = msg.data.code || msg.data; 
+                       else this.$data.error = msg.data.code || (msg.data.length ? msg.data : null); 
                    } else this.$data.error = msg;
                }
                if (this.$data.loading<=0) { this.$data.isBusy = false;this.$data.action=null; }			   
