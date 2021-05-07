@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -->
 <template>
-   <div class="alert alert-danger" v-if="error"><span>{{ $t(error.code || error) }}</span><slot></slot></div>
+   <div class="alert alert-danger" v-if="error!=null"><span>{{ $t(error.code || error) }}</span><slot></slot></div>
 </template>
 
 <script>

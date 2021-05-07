@@ -16,7 +16,7 @@ limitations under the License.
 <template>
    <div class="form-group form-row" :class="{ 'has-feedback': path }">
           <label :for="name" class="col-lg-4 col-form-label midata-label">{{ $t(label) }}</label>
-          <div class="col-lg-6"><slot></slot>            
+          <div class="col-lg-8"><slot></slot>            
             <div class="invalid-feedback" v-if="path">{{ $t(path) }}</div>
             <small class="form-text text-muted" v-if="help">{{ help }}</small>
           </div>

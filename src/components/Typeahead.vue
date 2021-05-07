@@ -5,6 +5,7 @@
             @keydown.down = 'down'
             @keydown.up = 'up'
             @blur = 'blur'
+            @focus = 'focus'
             v-bind="$attrs"
             >
         <ul class="dropdown-menu" :class="{'show':isOpen}">
@@ -21,7 +22,7 @@ export default {
     props : {
         suggestions : Array,
         field : String,
-        display : String | Function,
+        display : Object,
         modelValue : String
     },
     emits: ['update:modelValue','change','selection'],
@@ -36,14 +37,14 @@ export default {
     computed : {
         isOpen() {
             const { $data } = this;
-            return $data.selection != "" && this.matches.length != 0 && $data.open == true;
+            return /* $data.selection != "" && */ this.matches.length != 0 && this.matches.length < 10 && $data.open == true;
         },
 
         matches() {
             let result = [];
             for (let entry of this.suggestions) {
                 let v = this.val(entry), d = this.valShow(entry);
-                if (d && d.indexOf && d.indexOf(this.selection) >= 0) result.push({ display : d, value : v});
+                if (d && d.indexOf && (this.selection==""|| d.indexOf(this.selection)) >= 0) result.push({ display : d, value : v});
             }
             return result;
         }
@@ -116,11 +117,16 @@ export default {
             const { $data } = this;
             $data.open = false;
             this.$emit("selection", $data.selection);
+        },
+
+        focus() {
+           this.$data.open = true;
+           this.$data.current = 0;
         }
     },
 
     mounted() {
-        this.$data.selection = this.modelValue;
+        this.$data.selection = this.modelValue || "";
     }
 }
 </script>
