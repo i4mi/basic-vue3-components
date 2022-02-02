@@ -70,6 +70,9 @@ export default {
 
     mounted() {
         if (this.open) $('#'+this.id).modal('show');
+        $('#'+this.id).on('hidden.bs.modal', () => {            
+            if (this.open) this.close();
+        });
     }
 
 }

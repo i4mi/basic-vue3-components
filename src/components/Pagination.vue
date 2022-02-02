@@ -14,23 +14,24 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -->
 <template>
-    <nav class="nav" aria-label="Page navigation" v-if="item.all && item.all.length > item.pagesize" style="margin-top:10px">
+    <nav class="nav pagination-component" aria-label="Page navigation" v-if="item.all && item.all.length > item.pagesize" style="margin-top:10px">
         <ul class="pagination mr-auto">
             <li class="page-item" :class="{ disabled : item.current <= 1 }">
                 <a class="page-link"  href="javascript:" @click="prev()" aria-label="Previous">
                     <span aria-hidden="true">&laquo;</span>
                 </a>
             </li>
-            <li v-for="page in item.pages" :key="page.nr" class="page-item" :class="{ active : item.current == page.nr }"><a class="page-link" @click="setPage(page.nr)" href="javascript:">{{ page.label }}</a></li>
-
+            <li v-for="page in item.pages" :key="page.nr" class="page-item d-none d-sm-block" :class="{ active : item.current == page.nr }"><a class="page-link" @click="setPage(page.nr)" href="javascript:">{{ page.label }}</a></li>
+            <li class="page-item d-sm-none active"><a href="javascript:" class="page-link">{{ item.current }}</a></li>
+ 
             <li class="page-item" :class="{ disabled : item.current >= item.pageCount }">
                 <a class="page-link"  href="javascript:" @click="next()" aria-label="Next">
                     <span aria-hidden="true">&raquo;</span>
                 </a>
             </li>
         </ul>
-        <div v-if="search" class="col-sm-4 col-xs-2 col-lg-3">
-            <div class="input-group">
+        <div v-if="search" class="col-sm-4 col-12 col-lg-3">
+            <div class="input-group searchbox">
                 <input :placeholder="$t(label || 'common.search_btn')" type="text" :value="item.filter[search]" @input="item.filter[search]=$event.target.value" class="form-control py-2 border-right-0 border">
 
                 <span class="input-group-append">
