@@ -42,9 +42,13 @@ export default {
 
         matches() {
             let result = [];
+            let dupes = {};
             for (let entry of this.suggestions) {
                 let v = this.val(entry), d = this.valShow(entry);
-                if (d && d.indexOf && (this.selection==""|| d.indexOf(this.selection)) >= 0) result.push({ display : d, value : v});
+                if (d && d.indexOf && (this.selection==""|| d.indexOf(this.selection)) >= 0 && !dupes[v]) { 
+                  result.push({ display : d, value : v});
+                  dupes[v] = true;
+                }
             }
             return result;
         }
@@ -80,12 +84,14 @@ export default {
         
         up() {
             const { $data } = this;
+            if ($data.current > this.matches.length - 1) $data.current = this.matches.length - 1;
             if ($data.current > 0) $data.current--;
         },
         
         down() {
             const { $data } = this;
             if ($data.current < this.matches.length - 1) $data.current++;
+            else $data.current = this.matches.length - 1;
         },
         
         isActive(index) {
