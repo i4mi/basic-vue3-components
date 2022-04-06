@@ -9,7 +9,7 @@
             v-bind="$attrs"
             >
         <ul class="dropdown-menu" :class="{'show':isOpen}">
-            <a class="dropdown-item typeahead-item" v-for="(suggestion, idx) in matches" :key="suggestion.value" :class="{'active': isActive(idx)}" @click="suggestionClick(idx)" href="javascript:">
+            <a class="dropdown-item typeahead-item" v-for="(suggestion, idx) in matches" :key="suggestion.value" :class="{'active': isActive(idx)}" @click.prevent="suggestionClick(idx)" @mousedown.prevent="nop()" href="javascript:void">
                 {{ suggestion.display }}
             </a>
         </ul>
@@ -124,6 +124,8 @@ export default {
             $data.open = false;
             this.$emit("selection", $data.selection);
         },
+
+        nop() {},
 
         focus() {
            this.$data.open = true;
