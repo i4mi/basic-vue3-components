@@ -34,11 +34,12 @@ export default {
                 all:result,                 
                 sort:options.sort, 
                 filter:options.filter,
+                ignoreCase:options.ignoreCase,
                 total:0,
                 pagesize:options.pagesize || h,
                 pages:[],
                 pageCount : 1,
-                current:1,
+                current:1,                
                 promise:computed(() => this.fetch(input)),
                 filtered:computed(() => this.calc(input))
             });                     
@@ -62,6 +63,7 @@ export default {
                         process = _.filter(process, v);
                     } else if (v && v!="") {
                         let filterMethod = (t) => (t[key] && t[key].indexOf(v)>=0);
+                        if (input.ignoreCase) filterMethod = (t) => (t[key] && t[key].toLowerCase().indexOf(v.toLowerCase())>=0);
                         process = _.filter(process, filterMethod);
                     }
                 }                
