@@ -1,6 +1,6 @@
 {
   "name": "basic-vue3-components",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "private": false,
   "files": [
     "src/**"

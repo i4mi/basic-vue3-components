@@ -31,7 +31,7 @@ export default {
     usDate(dat) {
         if (!dat) return "";
         if (typeof dat == "number" || typeof dat == "string") dat = new Date(dat);
-        if (dat.getDay) return dat.toLocaleDateString("en-CA", { year: 'numeric', month: '2-digit', day: '2-digit'}); //dat.getDate()+"."+(1+dat.getMonth())+"."+dat.getFullYear();
+        if (dat.getDay) return dat.toLocaleDateString("sv", { year: 'numeric', month: '2-digit', day: '2-digit'}); //dat.getDate()+"."+(1+dat.getMonth())+"."+dat.getFullYear();
         return dat;
     }
 
