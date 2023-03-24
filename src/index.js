@@ -89,5 +89,11 @@ export default {
               
             }
           });
+
+          app.directive('date', (el,binding) => {
+            // Fix for Safari date input rendering      
+            el.type = (!el.disabled || binding.value) ? "date" : "text";
+          });
+
     }
 }
