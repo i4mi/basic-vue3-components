@@ -94,7 +94,7 @@ export default {
                 myform.classList.remove("was-validated");
             
                 let elem = myform[field];		
-                if (elem) {
+                if (elem && elem.classList) {
                     elem.classList.add("is-invalid");
                     $data.errors[field] = msg;
                     $data.errors._custom.push(field);

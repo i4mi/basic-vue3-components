@@ -78,7 +78,7 @@ export default {
                   const vm = binding.instance;
                   vm.error = null;
                   for (let field of vm.errors._custom) {
-                    el[field].classList.remove("is-invalid");
+                    if (el[field] && el[field].classList) el[field].classList.remove("is-invalid");
                   }
                   vm.errors = Object.assign({}, vm.errors, {
                     "_custom": []
